@@ -5,9 +5,6 @@ using System.Runtime.CompilerServices;
 
 namespace DemoForms.Helpers
 {
-    /// <summary>
-    /// Observable object with INotifyPropertyChanged implemented
-    /// </summary>
     public class ObservableObject : INotifyPropertyChanged
     {
         protected bool SetProperty<T>( ref T backingStore, T value,[CallerMemberName]string propertyName = "", Action onChanged = null)
@@ -16,7 +13,6 @@ namespace DemoForms.Helpers
             {
                 return false;
             }
-
             backingStore = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
@@ -29,8 +25,9 @@ namespace DemoForms.Helpers
         {
             var changed = PropertyChanged;
             if (changed == null)
+            {
                 return;
-
+            }
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

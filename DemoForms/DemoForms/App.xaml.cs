@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using DemoForms.Views;
 
 namespace DemoForms
 {
@@ -7,6 +8,7 @@ namespace DemoForms
         public App()
         {
             InitializeComponent();
+            MainPage = new MasterPage();
         }
     }
 }
