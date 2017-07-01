@@ -38,6 +38,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\BindableRadioGroup.cs" />
+    <Compile Include="CustomControls\CustomRadioButton.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Form.cs" />
@@ -82,7 +84,6 @@
     <EmbeddedResource Include="Resources\CountryList.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomControls\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

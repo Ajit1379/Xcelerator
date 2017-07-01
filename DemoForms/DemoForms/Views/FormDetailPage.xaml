@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DemoForms.ViewModels;assembly=DemoForms"
+             xmlns:customControl="clr-namespace:DemoForms.CustomControls;assembly=DemoForms"
              x:Class="DemoForms.Views.FormDetailPage">
     <ContentPage.BindingContext>
         <local:FormDetailPageViewModel/>
@@ -19,6 +20,16 @@
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="Nationality"/>
                     <Picker Title="County" ItemsSource="{Binding CountryList}" ItemDisplayBinding="{Binding Name}"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                    <Label Text="Gender"/>
+                    <customControl:BindableRadioGroup ItemsSource="{Binding GenderList}" SelectedIndex="0" CheckCommand="{Binding CheckCommand}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                    <Label Text="Maritial Status"/>
+                    <customControl:BindableRadioGroup ItemsSource="{Binding MaritialList}" SelectedIndex="1" CheckCommand="{Binding CheckCommand}"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
