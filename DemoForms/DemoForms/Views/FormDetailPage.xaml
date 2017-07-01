@@ -8,30 +8,29 @@
         <local:FormDetailPageViewModel/>
     </ContentPage.BindingContext>
     <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="2">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
             <Entry Placeholder="First Name" PlaceholderColor="LightGray"/>
             <Entry Placeholder="Middle Name" PlaceholderColor="LightGray"/>
             <Entry Placeholder="Last Name" PlaceholderColor="LightGray"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Label Text="Date of Birth"/>
-                    <DatePicker/>
-                </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Label Text="Nationality"/>
-                    <Picker Title="County" ItemsSource="{Binding CountryList}" ItemDisplayBinding="{Binding Name}"/>
-                </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label Text="Date of Birth"/>
+                <DatePicker/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label Text="Nationality"/>
+                <Picker Title="County" ItemsSource="{Binding CountryList}" ItemDisplayBinding="{Binding Name}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand">
                     <Label Text="Gender"/>
                     <customControl:BindableRadioGroup ItemsSource="{Binding GenderList}" SelectedIndex="0" CheckCommand="{Binding CheckCommand}"/>
                 </StackLayout>
                 <StackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand">
-                    <Label Text="Maritial Status"/>
-                    <customControl:BindableRadioGroup ItemsSource="{Binding MaritialList}" SelectedIndex="1" CheckCommand="{Binding CheckCommand}"/>
+                    <Label Text="Marital Status"/>
+                    <customControl:BindableRadioGroup ItemsSource="{Binding MaritalList}" SelectedIndex="1" CheckCommand="{Binding CheckCommand}"/>
                 </StackLayout>
             </StackLayout>
+            <Button Text="Upload Image" Command="{Binding ImageCommand}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

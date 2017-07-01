@@ -4,6 +4,7 @@ using DemoForms.Models;
 using DemoForms.CustomControls;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using DemoForms.Services;
 
 namespace DemoForms.ViewModels
 {
@@ -13,9 +14,11 @@ namespace DemoForms.ViewModels
 
         private List<CustomRadioButton> genderList;
 
-        private List<CustomRadioButton> maritialList;
+        private List<CustomRadioButton> maritalList;
 
         public Command<CustomRadioButton> CheckCommand { get; set; }
+
+        public Command ImageCommand { get; set; }
 
         public List<Country> CountryList
         {
@@ -29,10 +32,10 @@ namespace DemoForms.ViewModels
             set { SetProperty(ref genderList, value); }
         }
 
-        public List<CustomRadioButton> MaritialList
+        public List<CustomRadioButton> MaritalList
         {
-            get { return maritialList; }
-            set { SetProperty(ref maritialList, value); }
+            get { return maritalList; }
+            set { SetProperty(ref maritalList, value); }
         }
 
         public FormDetailPageViewModel()
@@ -44,8 +47,9 @@ namespace DemoForms.ViewModels
         {
             countryList = await GetCountryList();
             genderList = await GetGenderList();
-            maritialList = await GetMaritialList();
+            maritalList = await GetMaritalList();
             CheckCommand = new Command<CustomRadioButton>(OnCheckChanged);
+            ImageCommand = new Command(OnImageCommand);
         }
 
         private async Task<List<Country>> GetCountryList()
@@ -62,7 +66,7 @@ namespace DemoForms.ViewModels
                        };
         }
 
-        private async Task<List<CustomRadioButton>> GetMaritialList()
+        private async Task<List<CustomRadioButton>> GetMaritalList()
         {
             return new List<CustomRadioButton>
                        {
@@ -74,6 +78,11 @@ namespace DemoForms.ViewModels
         private void OnCheckChanged(CustomRadioButton item)
         {
             
+        }
+
+        private async void OnImageCommand()
+        {
+            var a =await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
         }
     }
 }
