@@ -1,5 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DemoForms.ViewModels;assembly=DemoForms"
              x:Class="DemoForms.Views.FormDetailPage">
+    <ContentPage.BindingContext>
+        <local:FormDetailPageViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="2">
+            <Entry Placeholder="First Name" PlaceholderColor="LightGray"/>
+            <Entry Placeholder="Middle Name" PlaceholderColor="LightGray"/>
+            <Entry Placeholder="Last Name" PlaceholderColor="LightGray"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Date of Birth"/>
+                    <DatePicker/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Nationality"/>
+                    <Picker Title="County" ItemsSource="{Binding CountryList}" ItemDisplayBinding="{Binding Name}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
