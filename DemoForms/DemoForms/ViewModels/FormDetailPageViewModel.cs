@@ -154,7 +154,13 @@ namespace DemoForms.ViewModels
             var msg = Validate(Form);
             if (msg == null)
             {
-
+                try
+                {
+                    var json = await JsonHelper.ConvertToJson(form);
+                    new RestService().SendData(json);
+                }
+                catch(Exception e)
+                { }
             }
             else
             {

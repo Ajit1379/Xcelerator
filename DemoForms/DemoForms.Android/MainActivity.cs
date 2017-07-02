@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DemoForms.Droid;
 using Xamarin.Forms;
 using System.IO;
+using System.Net;
 
 namespace DemoForms.Droid
 {
@@ -20,6 +21,8 @@ namespace DemoForms.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            ServicePointManager.ServerCertificateValidationCallback +=(sender, cert, chain, sslPolicyErrors) => true; 
 
             base.OnCreate(bundle);
 
