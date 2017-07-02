@@ -14,6 +14,7 @@ namespace DemoForms.Views
         public FormDetailPage()
         {
             InitializeComponent();
+            DatePicker.MaximumDate = DateTime.Today;
         }
     }
 }

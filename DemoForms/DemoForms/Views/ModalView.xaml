@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoForms.Views.ModalView">
+  <ContentView.Content>
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" Padding="10">
+        <Image Source="{Binding ImgSource,Converter={StaticResource ImageConverter}}" IsVisible="{Binding AnyMessage,Converter={StaticResource Inverter}}" HeightRequest="100" WidthRequest="100"/>
+        <Label Text="{Binding Message}" IsVisible="{Binding AnyMessage}" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button x:Name="Msg" Text="Ok" Command="{Binding OkCommand}" HorizontalOptions="Center" BackgroundColor="Transparent" TextColor="DodgerBlue" BorderRadius="30" BorderColor="Transparent"/>
+      </StackLayout>
+    </Grid>
+  </ContentView.Content>
+</ContentView>

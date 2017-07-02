@@ -2,35 +2,60 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DemoForms.ViewModels;assembly=DemoForms"
+             xmlns:view="clr-namespace:DemoForms.Views;assembly=DemoForms"
              xmlns:customControl="clr-namespace:DemoForms.CustomControls;assembly=DemoForms"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="DemoForms.Views.FormDetailPage">
     <ContentPage.BindingContext>
         <local:FormDetailPageViewModel/>
     </ContentPage.BindingContext>
-    <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
-            <Entry Placeholder="First Name" PlaceholderColor="LightGray"/>
-            <Entry Placeholder="Middle Name" PlaceholderColor="LightGray"/>
-            <Entry Placeholder="Last Name" PlaceholderColor="LightGray"/>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Label Text="Date of Birth"/>
-                <DatePicker/>
-            </StackLayout>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Label Text="Nationality"/>
-                <Picker Title="County" ItemsSource="{Binding CountryList}" ItemDisplayBinding="{Binding Name}"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="First Name"/>
+                    <Entry Text="{Binding Form.FirstName}" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Middle Name" />
+                    <Entry Text="{Binding Form.MiddleName}" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Last Name"/>
+                    <Entry Text="{Binding Form.LastName}" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Date of Birth"/>
+                    <DatePicker x:Name="DatePicker">
+                        <DatePicker.Behaviors>
+                            <behaviors:EventHandlerBehavior EventName="DateSelected">
+                                <behaviors:InvokeCommandAction Command="{Binding DateCommand}"/>
+                            </behaviors:EventHandlerBehavior>
+                        </DatePicker.Behaviors>
+                    </DatePicker>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Nationality"/>
+                    <Picker x:Name="Picker" Title="Country" ItemsSource="{Binding CountryList}" ItemDisplayBinding="{Binding Name}">
+                        <Picker.Behaviors>
+                            <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                                <behaviors:InvokeCommandAction Command="{Binding CountryCommand}" CommandParameter="{Binding Source={x:Reference Picker}}"/>
+                            </behaviors:EventHandlerBehavior>
+                        </Picker.Behaviors>
+                    </Picker>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
                     <Label Text="Gender"/>
                     <customControl:BindableRadioGroup ItemsSource="{Binding GenderList}" SelectedIndex="0" CheckCommand="{Binding CheckCommand}"/>
                 </StackLayout>
-                <StackLayout HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
                     <Label Text="Marital Status"/>
                     <customControl:BindableRadioGroup ItemsSource="{Binding MaritalList}" SelectedIndex="1" CheckCommand="{Binding CheckCommand}"/>
                 </StackLayout>
+                <Button Text="Upload Image" Command="{Binding ImageCommand}"/>
+                <Button Text="Submit" Command="{Binding SubmitCommand}"/>
             </StackLayout>
-            <Button Text="Upload Image" Command="{Binding ImageCommand}"/>
-        </StackLayout>
-    </ScrollView>
+        </ScrollView>
+        <view:ModalView IsVisible="{Binding IsModalVisible}"/>
+    </Grid>
 </ContentPage>

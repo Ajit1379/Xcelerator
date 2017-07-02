@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Windows.Input;
+using DemoForms.Helpers;
 
 namespace DemoForms.CustomControls
 {
-    using System.Windows.Input;
-
     public class BindableRadioGroup : StackLayout
     {
         private List<CustomRadioButton> rads;
@@ -43,8 +40,6 @@ namespace DemoForms.CustomControls
             get => (int)GetValue(SelectedIndexProperty);
             set => SetValue(SelectedIndexProperty, value);
         }
-
-        public event EventHandler<int> CheckedChanged;
 
         private static void OnItemsSourceChanged(BindableObject bindable, IEnumerable oldvalue, IEnumerable newvalue)
         {
@@ -82,15 +77,22 @@ namespace DemoForms.CustomControls
                 }
                 else
                 {
-                    //this.CheckedChanged?.Invoke(sender, rad.Id);
-                    CheckCommand.Execute(sender);
+                    CheckCommand.Execute(
+                        new RadioButtonEventArg
+                            {
+                                GroupIndex = SelectedIndex,
+                                RadioButton = (CustomRadioButton)sender
+                            });
                 }
             }
         }
 
         private static void OnSelectedIndexChanged(BindableObject bindable, int oldvalue, int newvalue)
         {
-            if (newvalue == -1) return;
+            if (newvalue == -1)
+            {
+                return;
+            }
             var bindableRadioGroup = bindable as BindableRadioGroup;
             foreach (var rad in bindableRadioGroup.rads)
             {
