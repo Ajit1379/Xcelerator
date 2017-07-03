@@ -1,18 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 using System.Globalization;
+using Xamarin.Forms;
 
-namespace DemoForms.Helpers
+namespace DemoForms.Converters
 {
-    class ImageConverter: IValueConverter
+    using DemoForms.Helpers;
+
+    class ByteToStream : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (ImageSource)value;
+            if (value != null)
+            {
+                return ImageSource.FromStream(() => ImageHelper.ByteToStream((byte[])value));
+            }
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

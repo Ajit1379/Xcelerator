@@ -6,9 +6,6 @@
              xmlns:customControl="clr-namespace:DemoForms.CustomControls;assembly=DemoForms"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="DemoForms.Views.FormDetailPage">
-    <ContentPage.BindingContext>
-        <local:FormDetailPageViewModel/>
-    </ContentPage.BindingContext>
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">

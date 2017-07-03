@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using DemoForms.Services;
 using System.IO;
 using DemoForms.Helpers;
+using DemoForms.Views;
 
 namespace DemoForms.ViewModels
 {
@@ -21,6 +22,8 @@ namespace DemoForms.ViewModels
         private List<CustomRadioButton> maritalList;
 
         private ImageSource imgSource;
+
+        private INavigation navigation;
 
         public Command<DateChangedEventArgs> DateCommand { get; set; }
 
@@ -62,8 +65,9 @@ namespace DemoForms.ViewModels
             set => SetProperty(ref imgSource, value);
         }
 
-        public FormDetailPageViewModel()
+        public FormDetailPageViewModel(INavigation nav)
         {
+            navigation = nav;
             Initializeform();
         }
 
@@ -154,13 +158,7 @@ namespace DemoForms.ViewModels
             var msg = Validate(Form);
             if (msg == null)
             {
-                try
-                {
-                    var json = await JsonHelper.ConvertToJson(form);
-                    new RestService().SendData(json);
-                }
-                catch(Exception e)
-                { }
+                await navigation.PushModalAsync(new ConfirmationPage(Form));
             }
             else
             {

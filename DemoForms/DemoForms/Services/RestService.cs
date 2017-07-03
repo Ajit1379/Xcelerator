@@ -1,40 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Net;
 using System.Net.Http;
-using Newtonsoft.Json;
 
 namespace DemoForms.Services
 {
     public class RestService
     {
-        HttpClient client;
-
-        public RestService()
-        {
-        }
-
-        public async Task SendData(string json)
+        public async Task<string> SendData(string json)
         {
             using (var client = new HttpClient())
             {
-                var RestUrl = "http://api.myjson.com/bins/c4ucn";
-                var uri = new Uri(string.Format(RestUrl, string.Empty));
+                var restUrl = "http://api.myjson.com/bins/c4ucn";
+                var uri = new Uri(string.Format(restUrl, string.Empty));
                 try
                 {
                     HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
                     HttpResponseMessage response = null;
                     response = await client.PutAsync(uri, content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return "Done";
+                    }
                 }
                 catch (Exception e)
                 {
-
+                    return "Oops!!!..An error occured";
                 }
+
+                return "Unknown error";
             }
         }
     }

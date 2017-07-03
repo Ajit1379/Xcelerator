@@ -4,21 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Globalization;
 
-namespace DemoForms.Helpers
+namespace DemoForms.Converters
 {
-    using System.Globalization;
-
-    public class Inverter : IValueConverter
+    class ImageConverter: IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
-            {
-                return false;
-            }
-
-            return true;
+            return (ImageSource)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:helpers="clr-namespace:DemoForms.Helpers;assembly=DemoForms"
+             xmlns:converters="clr-namespace:DemoForms.Converters;assembly=DemoForms"
              x:Class="DemoForms.App">
   <Application.Resources>
         <ResourceDictionary>
@@ -11,14 +11,10 @@
             <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
-
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="BarTextColor" Value="White" />
-            </Style>
-
-            <helpers:ImageConverter x:Key="ImageConverter" />
-            <helpers:Inverter x:Key="Inverter"/>
+            <converters:ImageConverter x:Key="ImageConverter" />
+            <converters:Inverter x:Key="Inverter"/>
+            <converters:DateConverter x:Key="DateConverter"/>
+            <converters:ByteToStream x:Key="ByteToStream"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
