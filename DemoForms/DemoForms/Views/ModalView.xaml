@@ -3,10 +3,19 @@
              x:Class="DemoForms.Views.ModalView">
   <ContentView.Content>
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
-      <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" Padding="10">
-        <Image Source="{Binding ImgSource,Converter={StaticResource ImageConverter}}" IsVisible="{Binding AnyMessage,Converter={StaticResource Inverter}}" HeightRequest="100" WidthRequest="100"/>
-        <Label Text="{Binding Message}" IsVisible="{Binding AnyMessage}" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <Button x:Name="Msg" Text="Ok" Command="{Binding OkCommand}" HorizontalOptions="Center" BackgroundColor="Transparent" TextColor="DodgerBlue" BorderRadius="30" BorderColor="Transparent"/>
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" Padding="10">
+        <Frame>
+          <StackLayout>
+          <Image Source="{Binding ImgSource,Converter={StaticResource ImageConverter}}" IsVisible="{Binding AnyMessage,Converter={StaticResource Inverter}}" HeightRequest="100" WidthRequest="100"/>
+          <Label Text="{Binding Message}" IsVisible="{Binding AnyMessage}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16"/>
+            <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+            <Label x:Name="Msg" Text="Ok"  HorizontalOptions="Center" BackgroundColor="Transparent" TextColor="DodgerBlue">
+              <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OkCommand}" NumberOfTapsRequired="1" />
+              </Label.GestureRecognizers>
+            </Label>
+          </StackLayout>
+        </Frame>
       </StackLayout>
     </Grid>
   </ContentView.Content>

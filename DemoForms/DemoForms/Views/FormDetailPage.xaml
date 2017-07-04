@@ -1,25 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:DemoForms.ViewModels;assembly=DemoForms"
              xmlns:view="clr-namespace:DemoForms.Views;assembly=DemoForms"
              xmlns:customControl="clr-namespace:DemoForms.CustomControls;assembly=DemoForms"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:helpers="clr-namespace:DemoForms.Helpers;assembly=DemoForms"
              x:Class="DemoForms.Views.FormDetailPage">
+    
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="First Name"/>
-                    <Entry Text="{Binding Form.FirstName}" />
+                    <Entry Text="{Binding Form.FirstName}">
+                        <Entry.Behaviors>
+                            <helpers:EntryLengthValidatorBehavior MaxLength="15" />
+                        </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="Middle Name" />
-                    <Entry Text="{Binding Form.MiddleName}" />
+                    <Entry Text="{Binding Form.MiddleName}">
+                        <Entry.Behaviors>
+                            <helpers:EntryLengthValidatorBehavior MaxLength="15" />
+                        </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="Last Name"/>
-                    <Entry Text="{Binding Form.LastName}" />
+                    <Entry Text="{Binding Form.LastName}">
+                        <Entry.Behaviors>
+                            <helpers:EntryLengthValidatorBehavior MaxLength="15" />
+                        </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="Date of Birth"/>

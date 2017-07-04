@@ -43,6 +43,7 @@
     <Compile Include="CustomControls\BindableRadioGroup.cs" />
     <Compile Include="CustomControls\CustomRadioButton.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Helpers\EntryLengthValidatorBehavior.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Converters\Inverter.cs" />
     <Compile Include="Helpers\JsonHelper.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Services\RestService.cs" />
     <Compile Include="Services\IPicturePicker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmationPageViewModel.cs" />
     <Compile Include="ViewModels\FormDetailPageViewModel.cs" />
     <Compile Include="Views\ConfirmationPage.xaml.cs">
       <DependentUpon>ConfirmationPage.xaml</DependentUpon>

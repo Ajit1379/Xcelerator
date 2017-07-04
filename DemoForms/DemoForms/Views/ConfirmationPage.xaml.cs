@@ -1,5 +1,6 @@
 ﻿using DemoForms.Models;
 using Xamarin.Forms;
+using DemoForms.ViewModels;
 
 namespace DemoForms.Views
 {
@@ -8,7 +9,7 @@ namespace DemoForms.Views
         public ConfirmationPage(Form form)
         {
             InitializeComponent();
-            BindingContext = form;
+            BindingContext = new ConfirmationPageViewModel(Navigation, form);
         }
     }
 }
