@@ -7,7 +7,7 @@ namespace DemoForms.Services
 {
     public class RestService
     {
-        public async Task<string> SendData(string json)
+        public async Task<bool> SendData(string json)
         {
             using (var client = new HttpClient())
             {
@@ -21,15 +21,15 @@ namespace DemoForms.Services
                     response = await client.PutAsync(uri, content);
                     if (response.IsSuccessStatusCode)
                     {
-                        return "Done";
+                        return true;
                     }
                 }
                 catch (Exception e)
                 {
-                    return "Oops!!!..An error occured";
+                    return false;
                 }
 
-                return "Unknown error";
+                return false;
             }
         }
     }

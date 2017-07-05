@@ -23,18 +23,35 @@ namespace DemoForms.ViewModels
             Form = form;
             ConfirmCommand = new Command(OnConfirm);
             CancelCommand = new Command(OnCancel);
+            OkCommand = new Command(OnOkay);
         }
 
-        public async void OnConfirm()
+        protected async void OnConfirm()
         {
             var json=await Helpers.JsonHelper.ConvertToJson(Form);
-            var statusMessage = await new RestService().SendData(json);
-
+            var status = await new RestService().SendData(json);
+            IsModalVisible = true;
+            AnyMessage = true;
+            if (status)
+            {
+                Message = "Successfully Sent";
+            }
+            else
+            {
+                Message = "Try Again";
+            }
         }
 
-        public async void OnCancel()
+        protected async void OnCancel()
         {
             await navigation.PopModalAsync();
+        }
+
+        protected async void OnOkay()
+        {
+            IsModalVisible = true;
+            AnyMessage = true;
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }
