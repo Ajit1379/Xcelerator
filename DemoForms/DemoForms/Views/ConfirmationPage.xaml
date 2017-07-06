@@ -58,6 +58,11 @@
         </Frame>
       </StackLayout>
       <views:ModalView IsVisible="{Binding IsModalVisible}"/>
+      <Grid IsVisible="{Binding IsRunning}" BackgroundColor="Gray" Opacity="0.5">
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+          <ActivityIndicator Color="DodgerBlue"  IsRunning="true" />
+        </StackLayout>
+      </Grid>
     </Grid>
   </ContentPage.Content>
 </ContentPage>

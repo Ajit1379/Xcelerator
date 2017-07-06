@@ -8,7 +8,7 @@
     <local:MenuPageViewModel/>
   </ContentPage.BindingContext>
   <ScrollView>
-    <StackLayout Padding="10">
+    <StackLayout>
       <StackLayout BackgroundColor="#e74c3c" HeightRequest="75">
         <Label Text="Menu" FontSize="20" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Center"/>
       </StackLayout>

@@ -2,5 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoForms.Views.ListDetailPage"
-             Title="ListDetailPage">
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:views="clr-namespace:DemoForms.Views;assembly=DemoForms"
+             Title="Users List">
+   <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+         <ListView x:Name="ListView" ItemsSource="{Binding UserList}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                SeparatorVisibility="None" RowHeight="300">
+            <ListView.ItemTemplate>
+               <DataTemplate>
+                  <ViewCell>
+                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
+                        <Grid>
+                           <views:CardView/>
+                           <StackLayout HorizontalOptions="End" VerticalOptions="Start" Padding="3" BackgroundColor="White" Margin="10">
+                              <controls:CircleImage Source="{Binding Image ,Converter={StaticResource ByteToStream}}"
+                                              HeightRequest="90" WidthRequest="90" Aspect="AspectFill"/>
+                           </StackLayout>
+                        </Grid>
+                     </StackLayout>
+                  </ViewCell>
+               </DataTemplate>
+            </ListView.ItemTemplate>
+         </ListView>
+      </StackLayout>
+      <Grid IsVisible="{Binding IsRunning}" BackgroundColor="Gray" Opacity="0.5">
+         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator Color="DodgerBlue"  IsRunning="true" />
+         </StackLayout>
+      </Grid>
+   </Grid>
 </ContentPage>

@@ -46,18 +46,21 @@
     <Compile Include="Helpers\EntryLengthValidatorBehavior.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Converters\Inverter.cs" />
-    <Compile Include="Helpers\JsonHelper.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\RadioButtonEventArg.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\RestService.cs" />
+    <Compile Include="Services\IFirebaseService.cs" />
     <Compile Include="Services\IPicturePicker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationPageViewModel.cs" />
     <Compile Include="ViewModels\FormDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ListDetailPageViewModel.cs" />
+    <Compile Include="Views\CardView.xaml.cs">
+      <DependentUpon>CardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfirmationPage.xaml.cs">
       <DependentUpon>ConfirmationPage.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ConfirmationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CardView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

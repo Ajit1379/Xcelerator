@@ -5,11 +5,19 @@
              xmlns:customControl="clr-namespace:DemoForms.CustomControls;assembly=DemoForms"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              xmlns:helpers="clr-namespace:DemoForms.Helpers;assembly=DemoForms"
-             x:Class="DemoForms.Views.FormDetailPage">
+             x:Class="DemoForms.Views.FormDetailPage" Title="Form">
     
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image Source="profile_generic.png" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ImageCommand}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Upload Image" FontAttributes="Bold" HorizontalOptions="Center"/>
+                </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="First Name"/>
                     <Entry Text="{Binding Form.FirstName}">
@@ -62,7 +70,6 @@
                     <Label Text="Marital Status"/>
                     <customControl:BindableRadioGroup ItemsSource="{Binding MaritalList}" SelectedIndex="1" CheckCommand="{Binding CheckCommand}"/>
                 </StackLayout>
-                <Button Text="Upload Image" Command="{Binding ImageCommand}"/>
                 <Button Text="Submit" Command="{Binding SubmitCommand}"/>
             </StackLayout>
         </ScrollView>

@@ -4,7 +4,7 @@ namespace DemoForms.ViewModels
 {
     public class BaseViewModel : ObservableObject
     {
-        private bool isBusy = false;
+        private bool isRunning = false;
         private bool anyMessage;
         private string title = string.Empty;
         private string message;
@@ -18,10 +18,10 @@ namespace DemoForms.ViewModels
             set { SetProperty(ref isModalVisible, value); }
         }
 
-        public bool IsBusy
+        public bool IsRunning
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            get => isRunning;
+            set => SetProperty(ref isRunning, value);
         }
 
         public bool AnyMessage

@@ -34,8 +34,8 @@ namespace DemoForms.ViewModels
         {
             return new List<MenuItem>
                        {
-                           new MenuItem { Title = "List Page", Icon = "", TargetType = typeof(ListDetailPage) },
-                           new MenuItem { Title = "Form Page", Icon = "", TargetType = typeof(FormDetailPage) }
+                           new MenuItem { Title = "Users", Icon = "account.png", TargetType = typeof(ListDetailPage) },
+                           new MenuItem { Title = "Form", Icon = "form", TargetType = typeof(FormDetailPage) }
                        };
         }
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using DemoForms.Models;
 using DemoForms.Services;
 
@@ -12,10 +7,17 @@ namespace DemoForms.ViewModels
     public class ConfirmationPageViewModel : BaseViewModel
     {
         private INavigation navigation;
+        private bool isRunning;
 
         public Form Form { get; set; }
         public Command ConfirmCommand { get; set; }
         public Command CancelCommand { get; set; }
+
+        public bool IsRunning
+        {
+            get => isRunning;
+            set => SetProperty(ref isRunning, value);
+        }
 
         public ConfirmationPageViewModel(INavigation nav,Form form)
         {
@@ -28,8 +30,9 @@ namespace DemoForms.ViewModels
 
         protected async void OnConfirm()
         {
-            var json=await Helpers.JsonHelper.ConvertToJson(Form);
-            var status = await new RestService().SendData(json);
+            IsRunning = true;
+            var status = await DependencyService.Get<IFirebaseService>().SendData(Form);
+            IsRunning = false;
             IsModalVisible = true;
             AnyMessage = true;
             if (status)
@@ -49,8 +52,8 @@ namespace DemoForms.ViewModels
 
         protected async void OnOkay()
         {
-            IsModalVisible = true;
-            AnyMessage = true;
+            IsModalVisible = false;
+            AnyMessage = false;
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
